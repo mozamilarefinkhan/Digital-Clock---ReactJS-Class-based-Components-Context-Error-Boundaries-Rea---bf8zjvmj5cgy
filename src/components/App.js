@@ -1,34 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
- 
-class App extends React.Component {
- 
- 
-  state = {
-    curTime: ""
-  };
- 
-  componentDidMount() {
-    this.getTime();
-  }
- 
-  getTime = () => {
-    var today = new Date(),
- 
-    curTime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
- 
- 
-    this.setState({ curTime });
-  };
- 
-  render(){
-    return (
-      <div className="App">
-        <p>Current Time (H:i:s) : {this.state.curTime}</p>
-      </div>
-    );
-  }
-}
- 
+import React, { useState, useEffect } from "react";
+import "../styles/App.css";
+const App = () => {
+  let date = new Date();
+  const [time, settime] = useState(date.toLocaleString());
+  useEffect(() => {}, []);
+  setInterval(() => {
+    date = new Date();
+    settime(date.toLocaleString());
+  }, 1000);
+
+  return (
+    <div id="main">
+      <div className="date-time">{time}</div>
+    </div>
+  );
+};
+
 export default App;
